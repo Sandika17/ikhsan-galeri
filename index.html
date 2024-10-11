@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -5,187 +6,172 @@
     <title>Ikhsan Adhandika</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-
     <!-- Link Google Fonts for Dancing Script -->
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
 
-<style>
-    body, html {
-        height: 100%;
-        font-family: 'Poppins', sans-serif;
-        overflow: hidden;
-    }
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            overflow-y: auto; /* Memungkinkan scroll */
+            height: auto; /* Agar tinggi tidak terbatas */
+        }
 
-    video {
-        position: fixed;
-        top: 0;
-        left: 0;
-        min-width: 100%;
-        min-height: 100%;
-        object-fit: cover;
-    }
+        video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            z-index: -1; /* Agar video berada di belakang elemen lain */
+        }
 
-    #lyrics {
-        text-align: center;
-        font-family: 'Dancing Script', cursive;
-        text-shadow: 0 0 8px rgba(156, 7, 7, 0.925), 
-                     0 0 15px rgba(180, 0, 0, 0.5), 
-                     0 0 20px rgba(120, 0, 0, 0.589),
-                     0 0 30px rgba(80, 0, 0, 0.479);
-    }
-</style>
+        #lyrics {
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            text-shadow: 0 0 8px rgba(156, 7, 7, 0.925), 
+                         0 0 15px rgba(180, 0, 0, 0.5), 
+                         0 0 20px rgba(120, 0, 0, 0.589),
+                         0 0 30px rgba(80, 0, 0, 0.479);
+            margin: 20px 0; /* Menambah jarak vertikal pada lirik */
+        }
+    </style>
 </head>
-<body class="relative flex items-center justify-center min-h-screen bg-gray-100">
+<body class="relative flex flex-col items-center justify-center min-h-screen bg-gray-100">
 
     <!-- Video background -->
-<video id="background-video" muted loop class="absolute top-0 left-0 w-full h-full object-cover z-[-1]">
-    <source src="https://cdn.pixabay.com/video/2021/10/27/93480-640562082_tiny.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
+    <video id="background-video" muted loop>
+        <source src="https://cdn.pixabay.com/video/2021/10/27/93480-640562082_tiny.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 
-<!-- Background Music -->
-<audio id="background-music" loop muted>
-    <source src="assets/sound.mp3" type="audio/mpeg">
-    Your browser does not support the audio tag.
-</audio>
+    <!-- Background Music -->
+    <audio id="background-music" loop muted>
+        <source src="assets/sound.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
 
-<!-- Tombol Play/Pause -->
-<div id="playPauseBtn" class="z-10 fixed flex items-center justify-center bg-black bg-opacity-70 text-white rounded-full w-16 h-16 cursor-pointer">
-    <i id="playPauseIcon" class="fas fa-play text-2xl"></i>
-</div>
-
-<!-- Lirik di tengah -->
-<div id="lyrics" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-3xl sm:text-5xl font-bold font-dancing opacity-0 transition-opacity"></div>
-
-<!-- Konten dengan posisi di atas video -->
-<div class="relative w-full h-full">
-    <div class="absolute top-4 left-4 md:top-8 md:left-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[-10deg]">
-        <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-28 md:w-48" src="assets/img2.jpg"/>
+    <!-- Tombol Play/Pause -->
+    <div id="playPauseBtn" class="z-10 flex items-center justify-center bg-black bg-opacity-70 text-white rounded-full w-16 h-16 cursor-pointer">
+        <i id="playPauseIcon" class="fas fa-play text-2xl"></i>
     </div>
-    <div class="absolute top-4 right-4 md:top-8 md:right-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[15deg]">
-        <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-32 md:w-44" src="assets/img1.jpg"/>
+
+    <!-- Lirik di tengah -->
+    <div id="lyrics" class="text-white text-3xl sm:text-5xl font-bold font-dancing opacity-0 transition-opacity"></div>
+
+    <!-- Konten dengan posisi di atas video -->
+    <div class="relative w-full h-auto"> <!-- Hanya h-auto untuk konten scroll -->
+        <div class="absolute top-4 left-4 md:top-8 md:left-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[-10deg]">
+            <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-28 md:w-48" src="assets/img2.jpg"/>
+        </div>
+        <div class="absolute top-4 right-4 md:top-8 md:right-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[15deg]">
+            <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-32 md:w-44" src="assets/img1.jpg"/>
+        </div>
+        <div class="absolute bottom-4 left-4 md:bottom-8 md:left-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[-5deg]">
+            <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-32 md:w-48" src="assets/img3.jpg"/>
+        </div>
+        <div class="absolute bottom-4 right-4 md:bottom-8 md:right-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[5deg]">
+            <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-36 md:w-52" src="assets/img4.jpg"/>
+        </div>
     </div>
-    <div class="absolute bottom-4 left-4 md:bottom-8 md:left-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[-5deg]">
-        <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-32 md:w-48" src="assets/img3.jpg"/>
-    </div>
-    <div class="absolute bottom-4 right-4 md:bottom-8 md:right-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[5deg]">
-        <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-36 md:w-52" src="assets/img4.jpg"/>
-    </div>
-</div>
 
-<script>
-const playPauseBtn = document.getElementById('playPauseBtn');
-const playPauseIcon = document.getElementById('playPauseIcon');
-const audio = document.getElementById('background-music');
-const video = document.getElementById('background-video'); 
-const lyricsElement = document.getElementById('lyrics');
+    <script>
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const playPauseIcon = document.getElementById('playPauseIcon');
+        const audio = document.getElementById('background-music');
+        const video = document.getElementById('background-video'); 
+        const lyricsElement = document.getElementById('lyrics');
 
-let isPlaying = false;
+        let isPlaying = false;
 
-const lyrics = [
-    { start: 2, end: 5, text: "Ikhsan & Annisya" },
-    { start: 6, end: 9, text: "Wahai cinta beri pertanda" },
-    { start: 9, end: 13, text: "Dengar kupu-kupu yang bicara" },
-    { start: 13, end: 15, text: "Bisingkan dada" },
-    { start: 15, end: 21, text: "Melantunkan nada asmara" },
-    { start: 21, end: 24, text: "Andai cinta setangkai bunga" },
-    { start: 24, end: 29, text: "Takkan buat kau layu dan kecewa" },
-    { start: 29, end: 37, text: "Kan ku jaga binar hatinya" },
-];
+        const lyrics = [
+            { start: 2, end: 5, text: "Ikhsan & Annisya" },
+            { start: 6, end: 9, text: "Wahai cinta beri pertanda" },
+            { start: 9, end: 13, text: "Dengar kupu-kupu yang bicara" },
+            { start: 13, end: 15, text: "Bisingkan dada" },
+            { start: 15, end: 21, text: "Melantunkan nada asmara" },
+            { start: 21, end: 24, text: "Andai cinta setangkai bunga" },
+            { start: 24, end: 29, text: "Takkan buat kau layu dan kecewa" },
+            { start: 29, end: 37, text: "Kan ku jaga binar hatinya" },
+        ];
 
-let currentLyric = 0;
+        let currentLyric = 0;
 
-function resetLyrics() {
-    currentLyric = 0;
-    lyricsElement.style.opacity = "0";  // Hide lyrics after reset
-}
-
-function togglePlayPause() {
-    if (isPlaying) {
-        audio.pause();
-        video.pause();
-        playPauseIcon.classList.remove('fa-pause');
-        playPauseIcon.classList.add('fa-play');
-    } else {
-        audio.play();
-        video.play();
-        playPauseIcon.classList.remove('fa-play');
-        playPauseIcon.classList.add('fa-pause');
-        setTimeout(() => playPauseBtn.classList.add('hidden'), 500);
-    }
-    isPlaying = !isPlaying;
-}
-
-// Sinkronisasi lirik dengan audio
-audio.addEventListener('timeupdate', () => {
-    const currentTime = Math.floor(audio.currentTime);
-
-    if (currentLyric < lyrics.length) {
-        const lyric = lyrics[currentLyric];
-
-        if (currentTime >= lyric.start && currentTime <= lyric.end) {
-            lyricsElement.textContent = lyric.text;
-            lyricsElement.style.opacity = "1";  // Show lyrics
-        } else if (currentTime > lyric.end) {
-            lyricsElement.style.opacity = "0";  // Hide lyrics
-            currentLyric++;
+        function resetLyrics() {
+            currentLyric = 0;
+            lyricsElement.style.opacity = "0";  // Hide lyrics after reset
         }
-    } else {
-        resetLyrics();  // Reset the lyrics once the last lyric is reached
-    }
-});
 
-// Ketika audio selesai, reset dan mulai dari awal
-audio.addEventListener('ended', () => {
-    audio.currentTime = 0; // Start the song over
-    resetLyrics(); // Reset lyrics when the song ends
-    audio.play(); // Automatically replay the audio
-});
+        function togglePlayPause() {
+            if (isPlaying) {
+                audio.pause();
+                video.pause();
+                playPauseIcon.classList.remove('fa-pause');
+                playPauseIcon.classList.add('fa-play');
+            } else {
+                audio.play();
+                video.play();
+                playPauseIcon.classList.remove('fa-play');
+                playPauseIcon.classList.add('fa-pause');
+                setTimeout(() => playPauseBtn.classList.add('hidden'), 500);
+            }
+            isPlaying = !isPlaying;
+        }
 
-playPauseBtn.addEventListener('click', togglePlayPause);
+        // Sinkronisasi lirik dengan audio
+        audio.addEventListener('timeupdate', () => {
+            const currentTime = Math.floor(audio.currentTime);
 
-window.addEventListener('load', function() {
-    setTimeout(() => {
-        video.play();
-        audio.play();
-        audio.muted = false;
-        playPauseIcon.classList.remove('fa-play');
-        playPauseIcon.classList.add('fa-pause');
-        playPauseBtn.classList.add('hidden');
-    }, 2000);
-});
+            if (currentLyric < lyrics.length) {
+                const lyric = lyrics[currentLyric];
 
-document.body.addEventListener('keydown', function(event) {
-    if (event.code === 'Space') {
-        togglePlayPause();
-        playPauseBtn.classList.add('visible');
-    }
-});
+                if (currentTime >= lyric.start && currentTime <= lyric.end) {
+                    lyricsElement.textContent = lyric.text;
+                    lyricsElement.style.opacity = "1";  // Show lyrics
+                } else if (currentTime > lyric.end) {
+                    lyricsElement.style.opacity = "0";  // Hide lyrics
+                    currentLyric++;
+                }
+            } else {
+                resetLyrics();  // Reset the lyrics once the last lyric is reached
+            }
+        });
 
-document.body.addEventListener('mousemove', function() {
-    if (!isPlaying) {
-        playPauseBtn.classList.remove('hidden');
-        playPauseBtn.classList.add('visible');
-    }
-});
-// Konversi video ke GIF menggunakan ffmpeg.js
-    const ffmpeg = require('ffmpeg.js');
-    const videoFile = 'path/to/video.mp4';
-    const outputFile = 'output.gif';
-    
-    ffmpeg.run('-i', videoFile, '-vf', 'scale=w:h', '-r', '10', outputFile, (err, stdout, stderr) => {
-      if (err) {
-        console.error(err);
-      } else {
-        console.log(`GIF saved to ${outputFile}`);
-        
-        // Tambahkan GIF ke halaman
-        const gifContainer = document.getElementById('gif-container');
-        const gif = document.createElement('img');
-        gif.src = outputFile;
-        gifContainer.appendChild(gif);
-      }
-    });
-  </script>
+        // Ketika audio selesai, reset dan mulai dari awal
+        audio.addEventListener('ended', () => {
+            audio.currentTime = 0; // Start the song over
+            resetLyrics(); // Reset lyrics when the song ends
+            audio.play(); // Automatically replay the audio
+        });
+
+        playPauseBtn.addEventListener('click', togglePlayPause);
+
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                video.play();
+                audio.play();
+                audio.muted = false;
+                playPauseIcon.classList.remove('fa-play');
+                playPauseIcon.classList.add('fa-pause');
+                playPauseBtn.classList.add('hidden');
+            }, 2000);
+        });
+
+        document.body.addEventListener('keydown', function(event) {
+            if (event.code === 'Space') {
+                togglePlayPause();
+                playPauseBtn.classList.add('visible');
+            }
+        });
+
+        document.body.addEventListener('mousemove', function() {
+            if (!isPlaying) {
+                playPauseBtn.classList.remove('hidden');
+                playPauseBtn.classList.add('visible');
+            }
+        });
+    </script>
 </body>
 </html>
