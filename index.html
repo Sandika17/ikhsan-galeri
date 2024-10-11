@@ -14,8 +14,8 @@
             margin: 0;
             padding: 0;
             font-family: 'Poppins', sans-serif;
-            overflow-y: auto; /* Memungkinkan scroll */
-            height: auto; /* Agar tinggi tidak terbatas */
+            height: 100%; /* Tinggi body menjadi 100% */
+            overflow: auto; /* Memungkinkan scroll */
         }
 
         video {
@@ -37,9 +37,20 @@
                          0 0 30px rgba(80, 0, 0, 0.479);
             margin: 20px 0; /* Menambah jarak vertikal pada lirik */
         }
+
+        .content {
+            position: relative;
+            z-index: 1; /* Memastikan konten di atas video */
+            padding: 20px; /* Menambahkan padding untuk konten */
+            min-height: 100vh; /* Menyediakan tinggi minimum agar konten memenuhi layar */
+            display: flex;
+            flex-direction: column; /* Mengatur arah kolom untuk isi */
+            justify-content: center; /* Memusatkan konten secara vertikal */
+            align-items: center; /* Memusatkan konten secara horizontal */
+        }
     </style>
 </head>
-<body class="relative flex flex-col items-center justify-center min-h-screen bg-gray-100">
+<body class="bg-gray-100">
 
     <!-- Video background -->
     <video id="background-video" muted loop>
@@ -54,26 +65,29 @@
     </audio>
 
     <!-- Tombol Play/Pause -->
-    <div id="playPauseBtn" class="z-10 flex items-center justify-center bg-black bg-opacity-70 text-white rounded-full w-16 h-16 cursor-pointer">
+    <div id="playPauseBtn" class="z-10 flex items-center justify-center bg-black bg-opacity-70 text-white rounded-full w-16 h-16 cursor-pointer fixed bottom-10 right-10">
         <i id="playPauseIcon" class="fas fa-play text-2xl"></i>
     </div>
 
-    <!-- Lirik di tengah -->
-    <div id="lyrics" class="text-white text-3xl sm:text-5xl font-bold font-dancing opacity-0 transition-opacity"></div>
-
     <!-- Konten dengan posisi di atas video -->
-    <div class="relative w-full h-auto"> <!-- Hanya h-auto untuk konten scroll -->
-        <div class="absolute top-4 left-4 md:top-8 md:left-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[-10deg]">
-            <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-28 md:w-48" src="assets/img2.jpg"/>
-        </div>
-        <div class="absolute top-4 right-4 md:top-8 md:right-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[15deg]">
-            <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-32 md:w-44" src="assets/img1.jpg"/>
-        </div>
-        <div class="absolute bottom-4 left-4 md:bottom-8 md:left-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[-5deg]">
-            <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-32 md:w-48" src="assets/img3.jpg"/>
-        </div>
-        <div class="absolute bottom-4 right-4 md:bottom-8 md:right-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[5deg]">
-            <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-36 md:w-52" src="assets/img4.jpg"/>
+    <div class="content">
+        <!-- Lirik di tengah -->
+        <div id="lyrics" class="text-white text-3xl sm:text-5xl font-bold font-dancing opacity-0 transition-opacity mb-8"></div>
+
+        <!-- Gambar konten -->
+        <div class="flex flex-wrap justify-center">
+            <div class="bg-white rounded-lg shadow-lg p-2 md:p-4 m-2 flex flex-col items-center">
+                <img alt="Image 1" class="rounded-lg mb-2 w-28 md:w-48" src="assets/img2.jpg"/>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-2 md:p-4 m-2 flex flex-col items-center">
+                <img alt="Image 2" class="rounded-lg mb-2 w-32 md:w-44" src="assets/img1.jpg"/>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-2 md:p-4 m-2 flex flex-col items-center">
+                <img alt="Image 3" class="rounded-lg mb-2 w-32 md:w-48" src="assets/img3.jpg"/>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-2 md:p-4 m-2 flex flex-col items-center">
+                <img alt="Image 4" class="rounded-lg mb-2 w-36 md:w-52" src="assets/img4.jpg"/>
+            </div>
         </div>
     </div>
 
