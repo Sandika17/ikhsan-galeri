@@ -12,16 +12,20 @@
 <style>
     body, html {
         height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
         font-family: 'Poppins', sans-serif;
-        overflow: hidden;
+        overflow-x: hidden; /* Menghindari guliran horizontal yang tidak perlu */
+        overflow-y: hidden; /* Menghindari guliran vertikal */
     }
 
     video {
         position: fixed;
         top: 0;
         left: 0;
-        width: 100%;
-        height: 80vh; /* Membatasi tinggi video menjadi 80% dari layar */
+        width: 100vw; /* Sesuaikan video dengan lebar layar */
+        height: 100vh; /* Tinggi video 100% dari tinggi viewport */
         object-fit: cover;
     }
 
@@ -35,10 +39,10 @@
     }
 </style>
 </head>
-<body class="relative flex items-center justify-center bg-gray-100">
+<body class="relative flex items-center justify-center h-screen w-screen bg-gray-100 overflow-hidden">
 
     <!-- Video background -->
-    <video id="background-video" muted loop class="absolute top-0 left-0 w-full object-cover z-[-1]">
+    <video id="background-video" muted loop class="absolute top-0 left-0 w-full h-full object-cover z-[-1]">
         <source src="https://cdn.pixabay.com/video/2021/10/27/93480-640562082_tiny.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
@@ -52,21 +56,21 @@
     <div id="lyrics" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-3xl sm:text-5xl font-bold font-dancing opacity-0 transition-opacity"></div>
 
     <!-- Konten di atas video -->
-    <div class="relative w-full h-[80vh]"> <!-- Sesuaikan tinggi konten dengan tinggi video -->
+    <div class="relative w-full h-full flex flex-col items-center justify-center">
         <!-- Gambar atas kiri -->
-        <div class="absolute top-8 left-4 md:top-8 md:left-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[-10deg]">
+        <div class="absolute top-4 left-4 md:top-8 md:left-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[-10deg]">
             <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-28 md:w-48" src="assets/img2.jpg"/>
         </div>
         <!-- Gambar atas kanan -->
-        <div class="absolute top-8 right-4 md:top-8 md:right-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[15deg]">
+        <div class="absolute top-4 right-4 md:top-8 md:right-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[15deg]">
             <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-32 md:w-44" src="assets/img1.jpg"/>
         </div>
         <!-- Gambar bawah kiri -->
-        <div class="absolute bottom-16 left-4 md:bottom-8 md:left-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[-5deg]">
+        <div class="absolute bottom-4 left-4 md:bottom-8 md:left-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[-5deg]">
             <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-32 md:w-48" src="assets/img3.jpg"/>
         </div>
         <!-- Gambar bawah kanan -->
-        <div class="absolute bottom-16 right-4 md:bottom-8 md:right-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[5deg]">
+        <div class="absolute bottom-4 right-4 md:bottom-8 md:right-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[5deg]">
             <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-36 md:w-52" src="assets/img4.jpg"/>
         </div>
     </div>
@@ -166,24 +170,6 @@ document.body.addEventListener('mousemove', function() {
         playPauseBtn.classList.add('visible');
     }
 });
-// Konversi video ke GIF menggunakan ffmpeg.js
-    const ffmpeg = require('ffmpeg.js');
-    const videoFile = 'path/to/video.mp4';
-    const outputFile = 'output.gif';
-    
-    ffmpeg.run('-i', videoFile, '-vf', 'scale=w:h', '-r', '10', outputFile, (err, stdout, stderr) => {
-      if (err) {
-        console.error(err);
-      } else {
-        console.log(`GIF saved to ${outputFile}`);
-        
-        // Tambahkan GIF ke halaman
-        const gifContainer = document.getElementById('gif-container');
-        const gif = document.createElement('img');
-        gif.src = outputFile;
-        gifContainer.appendChild(gif);
-      }
-    });
-  </script>
+</script>
 </body>
 </html>
