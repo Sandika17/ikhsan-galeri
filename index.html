@@ -1,10 +1,15 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ikhsan Adhandika</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    <!-- Include Tailwind CSS CDN with cache-busting -->
+    <script src="https://cdn.tailwindcss.com?v=1.1"></script>
+
+    <!-- Link FontAwesome with cache-busting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css?v=1.1" rel="stylesheet">
 
     <!-- Link Google Fonts for Dancing Script -->
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
@@ -16,7 +21,6 @@
             overflow: hidden;
         }
 
-        /* Ganti styling untuk video dengan gambar */
         img#background-gif {
             position: fixed;
             top: 0;
@@ -39,12 +43,12 @@
 </head>
 <body class="relative flex items-center justify-center min-h-screen bg-gray-100">
 <p>halo</p>
-    <!-- GIF background -->
-    <img id="background-gif" src="assets/bgimage.gif" alt="Background GIF" class="absolute top-0 left-0 w-full h-full object-cover z-[-1]">
+    <!-- GIF background with cache-busting -->
+    <img id="background-gif" src="assets/bgimage.gif?v=1.1" alt="Background GIF" class="absolute top-0 left-0 w-full h-full object-cover z-[-1]">
 
-    <!-- Background Music -->
+    <!-- Background Music with cache-busting -->
     <audio id="background-music" loop muted>
-        <source src="assets/sound.mp3" type="audio/mpeg">
+        <source src="assets/sound.mp3?v=1.1" type="audio/mpeg">
         Your browser does not support the audio tag.
     </audio>
 
@@ -58,17 +62,18 @@
 
     <!-- Konten dengan posisi di atas GIF -->
     <div class="relative w-full h-full">
+        <!-- Images with cache-busting -->
         <div class="absolute top-4 left-4 md:top-8 md:left-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[-10deg]">
-            <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-28 md:w-48" src="assets/img2.jpg"/>
+            <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-28 md:w-48" src="assets/img2.jpg?v=1.1"/>
         </div>
         <div class="absolute top-4 right-4 md:top-8 md:right-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[15deg]">
-            <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-32 md:w-44" src="assets/img1.jpg"/>
+            <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-32 md:w-44" src="assets/img1.jpg?v=1.1"/>
         </div>
         <div class="absolute bottom-4 left-4 md:bottom-8 md:left-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[-5deg]">
-            <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-32 md:w-48" src="assets/img3.jpg"/>
+            <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-32 md:w-48" src="assets/img3.jpg?v=1.1"/>
         </div>
         <div class="absolute bottom-4 right-4 md:bottom-8 md:right-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[5deg]">
-            <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-36 md:w-52" src="assets/img4.jpg"/>
+            <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-36 md:w-52" src="assets/img4.jpg?v=1.1"/>
         </div>
     </div>
 
