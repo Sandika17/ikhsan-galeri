@@ -37,15 +37,12 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%); /* Memindahkan tombol ke tengah */
+            transform: translate(-50%, 130%); /* Memindahkan tombol ke tengah */
         }
 
         /* Mengatur posisi teks di atas tombol */
         #infoText {
             position: absolute;
-            top: calc(50% - -100px); /* Menempatkan teks sedikit di atas tombol */
-            left: 50%;
-            transform: translateX(-50%);
             text-align: center;
         }
 
@@ -70,13 +67,13 @@
     </audio>
 
     <!-- Informational Text -->
-    <div id="infoText" class="text-white bg-black bg-opacity-70 rounded-lg p-4">
-        <p class="text-xl mb-2">"Setiap frasa adalah lagu yang tersembunyi,</p>
-        <p class="text-xl">Tekan play, dan rasakan getarannya menghampiri."</p>
+    <div id="infoText" class="text-white bg-black bg-opacity-70 rounded-lg p-1">
+        <p class="text-md mb-2">"Setiap frasa adalah lagu yang tersembunyi,</p>
+        <p class="text-md">Tekan play, dan rasakan getarannya menghampiri."</p>
     </div>
 
     <!-- Tombol Play/Pause -->
-    <button id="playPauseBtn" class="z-10 flex flex-col items-center justify-center bg-black bg-opacity-70 text-white rounded-full w-32 h-32 cursor-pointer">
+    <button id="playPauseBtn" class="z-10 flex flex-col items-center justify-center bg-black bg-opacity-70 text-white rounded-full w-24 h-24 cursor-pointer">
         <span id="playPauseText" class="text-2xl">Play</span>
     </button>
 
@@ -86,16 +83,16 @@
     <!-- Konten dengan posisi di atas video -->
     <div class="relative w-full h-full">
         <div class="absolute top-14 left-4 md:top-14 md:left-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[-10deg]">
-            <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-28 md:w-48" src="assets/img2.jpg"/>
+            <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-28 md:w-48" src="assets/img3.jpg"/>
         </div>
         <div class="absolute top-14 right-4 md:top-14 md:right-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[15deg]">
-            <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-32 md:w-44" src="assets/img1.jpg"/>
+            <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-24 md:w-44" src="assets/img4.jpg"/>
         </div>
         <div class="absolute bottom-14 left-4 md:bottom-8 md:left-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[-5deg]">
-            <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-32 md:w-48" src="assets/img3.jpg"/>
+            <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-28 md:w-48" src="assets/img2.jpg"/>
         </div>
         <div class="absolute bottom-14 right-4 md:bottom-8 md:right-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[5deg]">
-            <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-36 md:w-52" src="assets/img4.jpg"/>
+            <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-32 md:w-52" src="assets/img1.jpg"/>
         </div>
     </div>
 
