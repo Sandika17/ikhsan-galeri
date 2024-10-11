@@ -31,6 +31,28 @@
                          0 0 20px rgba(120, 0, 0, 0.589),
                          0 0 30px rgba(80, 0, 0, 0.479);
         }
+
+        /* Menambahkan kelas untuk mengatur posisi tombol play */
+        #playPauseBtn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Memindahkan tombol ke tengah */
+        }
+
+        /* Mengatur posisi teks di atas tombol */
+        #infoText {
+            position: absolute;
+            top: calc(50% - -100px); /* Menempatkan teks sedikit di atas tombol */
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        /* Menambahkan gaya untuk tombol yang hilang */
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body class="relative flex items-center justify-center min-h-screen bg-gray-100">
@@ -48,9 +70,9 @@
     </audio>
 
     <!-- Informational Text -->
-    <div id="infoText" class="text-white text-center absolute top-20">
-        <p class="text-xl mb-2">Setiap frasa adalah lagu yang tersembunyi,</p>
-        <p class="text-xl">Tekan play, dan rasakan getarannya menghampiri.</p>
+    <div id="infoText" class="text-white bg-black bg-opacity-70 rounded-lg p-4">
+        <p class="text-xl mb-2">"Setiap frasa adalah lagu yang tersembunyi,</p>
+        <p class="text-xl">Tekan play, dan rasakan getarannya menghampiri."</p>
     </div>
 
     <!-- Tombol Play/Pause -->
@@ -86,6 +108,7 @@
     const infoText = document.getElementById('infoText');
 
     let isPlaying = false;
+    let hasShownInfoText = false; // Flag untuk melacak apakah infoText sudah ditampilkan
 
     const lyrics = [
         { start: 2, end: 5, text: "Ikhsan & Annisya" },
@@ -109,14 +132,21 @@
         if (isPlaying) {
             audio.pause();
             video.pause();
-            playPauseText.textContent = "Play";
-            playPauseText.style.opacity = "1"; // Show text again
-            infoText.style.opacity = "1"; // Show info text again
+            playPauseText.textContent = "Play"; // Update text to "Play"
+            playPauseBtn.classList.remove('hidden'); // Tampilkan kembali tombol play
         } else {
             audio.play();
             video.play();
-            playPauseText.style.opacity = "0"; // Hide text when playing
-            infoText.style.opacity = "0"; // Hide info text when playing
+            playPauseText.textContent = "Pause"; // Update text to "Pause"
+
+            // Menyembunyikan teks info hanya pada pemutaran pertama
+            if (!hasShownInfoText) {
+                infoText.style.opacity = "0"; // Hide info text when playing
+                hasShownInfoText = true; // Set flag menjadi true
+            }
+
+            // Menyembunyikan tombol pause setelah play diklik
+            playPauseBtn.classList.add('hidden');
         }
         isPlaying = !isPlaying;
     }
@@ -144,19 +174,17 @@
     audio.addEventListener('ended', () => {
         audio.currentTime = 0; // Start the song over
         resetLyrics(); // Reset lyrics when the song ends
-        audio.play(); // Automatically replay the audio
+        // Tampilkan kembali tombol play
+        playPauseBtn.classList.remove('hidden');
+        playPauseText.textContent = "Play"; // Reset teks tombol
     });
 
     playPauseBtn.addEventListener('click', togglePlayPause);
 
+    // Hapus kode untuk auto play pada load
     window.addEventListener('load', function() {
-        setTimeout(() => {
-            video.play();
-            audio.play();
-            audio.muted = false;
-            playPauseText.textContent = "Pause";
-            playPauseBtn.classList.add('hidden');
-        }, 2000);
+        video.play(); // Hanya video yang diputar
+        audio.muted = false; // Audio tetap di-mute
     });
 
     document.body.addEventListener('keydown', function(event) {
