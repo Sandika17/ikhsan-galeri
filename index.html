@@ -48,9 +48,9 @@
     </audio>
 
     <!-- Informational Text -->
-    <div class="text-white text-center absolute top-20">
-        <p class="text-xl mb-2">Setiap frasa alah lagu yang tersembunyi,</p>
-        <p class="text-xl">Tekan play, dan rasakan geratannya, menghampiri.</p>
+    <div id="infoText" class="text-white text-center absolute top-20">
+        <p class="text-xl mb-2">Setiap frasa adalah lagu yang tersembunyi,</p>
+        <p class="text-xl">Tekan play, dan rasakan getarannya menghampiri.</p>
     </div>
 
     <!-- Tombol Play/Pause -->
@@ -83,6 +83,7 @@
     const audio = document.getElementById('background-music');
     const video = document.getElementById('background-video'); 
     const lyricsElement = document.getElementById('lyrics');
+    const infoText = document.getElementById('infoText');
 
     let isPlaying = false;
 
@@ -109,11 +110,13 @@
             audio.pause();
             video.pause();
             playPauseText.textContent = "Play";
+            playPauseText.style.opacity = "1"; // Show text again
+            infoText.style.opacity = "1"; // Show info text again
         } else {
             audio.play();
             video.play();
-            playPauseText.textContent = "Pause";
-            setTimeout(() => playPauseBtn.classList.add('hidden'), 500);
+            playPauseText.style.opacity = "0"; // Hide text when playing
+            infoText.style.opacity = "0"; // Hide info text when playing
         }
         isPlaying = !isPlaying;
     }
