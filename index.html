@@ -2,6 +2,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
     <title>Ikhsan Adhandika</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
@@ -59,24 +62,19 @@
 
 <!-- Konten dengan posisi di atas video -->
 <div class="relative w-full h-full">
-    <!-- Gambar atas kiri -->
-    <div class="absolute top-6 left-4 sm:top-10 sm:left-4 md:top-8 md:left-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[-10deg]">
+    <div class="absolute top-4 left-4 md:top-8 md:left-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[-10deg]">
         <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-28 md:w-48" src="assets/img2.jpg"/>
     </div>
-    <!-- Gambar atas kanan -->
-    <div class="absolute top-6 right-4 sm:top-10 sm:right-4 md:top-8 md:right-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[15deg]">
+    <div class="absolute top-4 right-4 md:top-8 md:right-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[15deg]">
         <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-32 md:w-44" src="assets/img1.jpg"/>
     </div>
-    <!-- Gambar bawah kiri -->
-    <div class="absolute bottom-6 left-4 sm:bottom-10 sm:left-4 md:bottom-8 md:left-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[-5deg]">
+    <div class="absolute bottom-4 left-4 md:bottom-8 md:left-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[-5deg]">
         <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-32 md:w-48" src="assets/img3.jpg"/>
     </div>
-    <!-- Gambar bawah kanan -->
-    <div class="absolute bottom-6 right-4 sm:bottom-10 sm:right-4 md:bottom-8 md:right-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[5deg]">
+    <div class="absolute bottom-4 right-4 md:bottom-8 md:right-8 bg-white rounded-lg shadow-lg p-2 md:p-4 flex flex-col items-center transform rotate-[5deg]">
         <img alt="Image" class="rounded-lg mb-2 md:mb-4 w-36 md:w-52" src="assets/img4.jpg"/>
     </div>
 </div>
-
 
 <script>
 const playPauseBtn = document.getElementById('playPauseBtn');
@@ -173,7 +171,8 @@ document.body.addEventListener('mousemove', function() {
         playPauseBtn.classList.add('visible');
     }
 });
-// Konversi video ke GIF menggunakan ffmpeg.js
+
+//Konversi video ke GIF menggunakan ffmpeg.js
     const ffmpeg = require('ffmpeg.js');
     const videoFile = 'path/to/video.mp4';
     const outputFile = 'output.gif';
@@ -191,6 +190,7 @@ document.body.addEventListener('mousemove', function() {
         gifContainer.appendChild(gif);
       }
     });
-  </script>
+</script>
+
 </body>
 </html>
