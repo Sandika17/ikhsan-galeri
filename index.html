@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,30 +8,30 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
     <!-- Link Google Fonts for Dancing Script -->
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
 
-<style>
-    body, html {
-        font-family: 'Poppins', sans-serif;
-        overflow: hidden;
-    }
+    <style>
+        body, html {
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+        }
 
-    video {
-        position: fixed;
-        top: 0;
-        left: 0;
-        object-fit: cover;
-    }
+        video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            object-fit: cover;
+        }
 
-    #lyrics {
-        text-align: center;
-        font-family: 'Dancing Script', cursive;
-        text-shadow: 0 0 8px rgba(156, 7, 7, 0.925), 
-                     0 0 15px rgba(180, 0, 0, 0.5), 
-                     0 0 20px rgba(120, 0, 0, 0.589),
-                     0 0 30px rgba(80, 0, 0, 0.479);
-    }
-</style>
+        #lyrics {
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            text-shadow: 0 0 8px rgba(156, 7, 7, 0.925), 
+                         0 0 15px rgba(180, 0, 0, 0.5), 
+                         0 0 20px rgba(120, 0, 0, 0.589),
+                         0 0 30px rgba(80, 0, 0, 0.479);
+        }
+    </style>
 </head>
 <body class="relative flex items-center justify-center min-h-screen bg-gray-100">
 
@@ -46,10 +47,16 @@
         Your browser does not support the audio tag.
     </audio>
 
-    <!-- Tombol Play/Pause -->
-    <div id="playPauseBtn" class="z-10 fixed flex items-center justify-center bg-black bg-opacity-70 text-white rounded-full w-16 h-16 cursor-pointer">
-        <i id="playPauseIcon" class="fas fa-play text-2xl"></i>
+    <!-- Informational Text -->
+    <div class="text-white text-center absolute top-20">
+        <p class="text-xl mb-2">Setiap frasa alah lagu yang tersembunyi,</p>
+        <p class="text-xl">Tekan play, dan rasakan geratannya, menghampiri.</p>
     </div>
+
+    <!-- Tombol Play/Pause -->
+    <button id="playPauseBtn" class="z-10 flex flex-col items-center justify-center bg-black bg-opacity-70 text-white rounded-full w-32 h-32 cursor-pointer">
+        <span id="playPauseText" class="text-2xl">Play</span>
+    </button>
 
     <!-- Lirik di tengah -->
     <div id="lyrics" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-3xl sm:text-5xl font-bold font-dancing opacity-0 transition-opacity"></div>
@@ -72,7 +79,7 @@
 
     <script>
     const playPauseBtn = document.getElementById('playPauseBtn');
-    const playPauseIcon = document.getElementById('playPauseIcon');
+    const playPauseText = document.getElementById('playPauseText');
     const audio = document.getElementById('background-music');
     const video = document.getElementById('background-video'); 
     const lyricsElement = document.getElementById('lyrics');
@@ -101,13 +108,11 @@
         if (isPlaying) {
             audio.pause();
             video.pause();
-            playPauseIcon.classList.remove('fa-pause');
-            playPauseIcon.classList.add('fa-play');
+            playPauseText.textContent = "Play";
         } else {
             audio.play();
             video.play();
-            playPauseIcon.classList.remove('fa-play');
-            playPauseIcon.classList.add('fa-pause');
+            playPauseText.textContent = "Pause";
             setTimeout(() => playPauseBtn.classList.add('hidden'), 500);
         }
         isPlaying = !isPlaying;
@@ -146,8 +151,7 @@
             video.play();
             audio.play();
             audio.muted = false;
-            playPauseIcon.classList.remove('fa-play');
-            playPauseIcon.classList.add('fa-pause');
+            playPauseText.textContent = "Pause";
             playPauseBtn.classList.add('hidden');
         }, 2000);
     });
@@ -165,7 +169,7 @@
             playPauseBtn.classList.add('visible');
         }
     });
-</script>
+    </script>
 
 </body>
 </html>
